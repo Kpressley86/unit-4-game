@@ -1,5 +1,7 @@
-body {
-
-    background-image: url("../images/background1.gif");
-    
-}
+html { 
+    background: url("../images/background1.gif") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  };
