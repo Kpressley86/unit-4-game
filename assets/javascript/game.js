@@ -2,9 +2,9 @@ $(document).ready(function () {
 
     let marvelHeros = {
 
-        name: ["juggernaut", "wolverine", "gambit", "deadpool"],
+        name: ["juggernaut", "wolverine", "venom"],
 
-        damage: [10, 20, 30, 40],
+        damage: [10, 20, 30],
 
         health: [100, 150, 200, 250],
 
@@ -13,9 +13,9 @@ $(document).ready(function () {
 
     let ponyHeros = {
 
-        name: [ "pony1", "pony2", "pony3", "pony4"],
+        name: [ "pinkypie", "rainbowdash", "pony3"],
 
-        damage: [10, 20, 30, 40],
+        damage: [10, 20, 30],
 
         health: [100, 150, 200, 250],
 
