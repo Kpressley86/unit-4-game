@@ -32,10 +32,57 @@ body {
     text-shadow: 4px 4px 4px rgb(109, 7, 7);
 
   }
+
+  #selection {
+    
+    font-family: 'Noto Sans KR', sans-serif;
+    color: rgb(32, 32, 30);
+    font-size: 50px;
+    text-shadow: 3px 3px 3px rgb(255, 255, 255);
+
+  }
 /* Hero select row */
 #heroselect {
 
 
+}
+
+/* Hero box display */
+#mar1 { 
+  background: url(../images/wolverine.gif) 50% 50% no-repeat;
+  width: 250px;
+  height: 250px;
+  border: 0px;
+}
+
+#mar2 { 
+  background: url(../images/wolverine.gif) 50% 50% no-repeat;
+  width: 250px;
+  height: 250px;
+}
+
+#mar3 { 
+  background: url(../images/wolverine.gif) 50% 50% no-repeat;
+  width: 250px;
+  height: 250px;
+}
+
+#pon1 { 
+  background: url(../images/wolverine.gif) 50% 50% no-repeat;
+  width: 250px;
+  height: 250px;
+}
+
+#pon2 { 
+  background: url(../images/wolverine.gif) 50% 50% no-repeat;
+  width: 250px;
+  height: 250px;
+}
+
+#pon3 { 
+  background: url(../images/wolverine.gif) 50% 50% no-repeat;
+  width: 250px;
+  height: 250px;
 }
 
 /* Small devices (landscape phones, 576px and up) */
