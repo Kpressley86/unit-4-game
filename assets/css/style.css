@@ -6,6 +6,10 @@ body {
   }
 
   /* title decoration */
+  #wins, #losses {
+    font-size: 40px;
+    color:green;
+  }
 
   #pony {
 
@@ -42,48 +46,83 @@ body {
 
   }
 /* Hero select row */
+/* 
 #heroselect {
 
+} 
+#enemy {
 
 }
+#battle {
+
+}
+*/
 
 /* Hero box display */
-#mar1 { 
-  background: url(../images/wolverine.gif) 50% 50% no-repeat;
-  width: 250px;
-  height: 250px;
-  border: 0px;
-}
 
-#mar2 { 
+#mar1 { 
   background: url(../images/jugger.gif) 50% 50% no-repeat;
   width: 250px;
   height: 250px;
+  padding: 1px;
+  border: 2px solid #ebeef2;
+}
+
+#mar2 { 
+  background: url(../images/wolverine.gif) 50% 50% no-repeat;
+  width: 250px;
+  height: 250px;
+  padding: 1px;
+  border: 2px solid #ebeef2;
 }
 
 #mar3 { 
   background: url(../images/venom.gif) 50% 50% no-repeat;
   width: 250px;
   height: 250px;
+  padding: 1px;
+  border: 2px solid #ebeef2;
 }
 
 #pon1 { 
   background: url(../images/pony1.gif) 50% 50% no-repeat;
   width: 250px;
   height: 250px;
+  padding: 1px;
+  border: 2px solid #ebeef2;
 }
 
 #pon2 { 
   background: url(../images/pony2.gif) 50% 50% no-repeat;
   width: 250px;
   height: 250px;
+  padding: 1px;
+  border: 2px solid #ebeef2;
 }
 
 #pon3 { 
   background: url(../images/pony3.gif) 50% 50% no-repeat;
   width: 250px;
   height: 250px;
+  padding: 1px;
+  border: 2px solid #ebeef2;
 }
+
+#enemyDiv {
+  width: 250px;
+  height: 250px;
+  padding: 1px;
+  border: 2px solid #e67c1a;
+}
+
+#battleDiv {
+  width: 250px;
+  height: 250px;
+  padding: 1px;
+  border: 2px solid #f70101;
+}
+
+
 
 /* Small devices (landscape phones, 576px and up) */
 

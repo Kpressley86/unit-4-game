@@ -24,63 +24,108 @@
     <!-- Title -->
     <div class="row" id="title">
         <div class="col-md-3"></div>
-        <div class="col-md-3.5">
-            <h1 id="marvel">Marvel </h1>
+        <div class="col-md-2">
+            <h1 id="marvel">Marvel&nbsp</h1>
         </div>
-        <div class="col-md-2.5">
+        <div class="col-md-1">
             <h1 id="vs">VS.</h1>
         </div>
-        <div class="col-md-2">
-            <h1 id="pony">Pony</h1>
+        <div class="col-md-6">
+            <h1 id="pony">&nbspPony</h1>
         </div>
     </div>
 
-    <!-- Marvel boxes -->
+    <!-- Select a hero -->
+
+    <div class="row" id="selection">
+        <div class="col-md-3"></div>
+        <div class="col-md-2" id="wins">Wins: 0</div>
+        <div class="col-md-3">Select a Hero!</div>
+        <div class="col-md-4" id="losses">Losses: 0</div>
+    </div>
+
+    <!-- Marvel Div boxes -->
+
     <div class="row" id="heroselect">
 
-        <div class="col-md-2" id="mar1"></div>
-        <div class="col-md-2" id="mar2"></div>
-        <div class="col-md-2" id="mar3"></div>
-
-        <!-- Pony boxes -->
-
-        <div class="col-md-2" id="pon1"></div>
-        <div class="col-md-2" id="pon2"></div>
-        <div class="col-md-2" id="pon3"></div>
-    </div>
-
-    <!-- Select a hero title -->
-
-    <div class="row" id="selection">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">Select a Hero!</div>
-        <div class="col-md-4"></div>
-    </div>
-
-    <!-- Choose an enemy -->
-    <div class="row" id="enemy">
-        <div class="col-md-2" id="pon1"></div>
-        <div class="col-md-2" id="pon2"></div>
-        <div class="col-md-2" id="pon2"></div>
-    </div>
-
-
-    <!-- Select an enemy title-->
-    <div class="row" id="selection">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">Select an Enemy!</div>
-        <div class="col-md-4"></div>
-    </div>
-
-    <!-- Battle area -->
-    <div class="row">
-        <div class="col-md-2" id="pon1"></div>
-    </div>
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-1">
-            <button type="button" class="btn btn-danger">Battle!</button>
+        <div class="col-md-2" id="mar1">
+            <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100"
+                    aria-valuemin="0" aria-valuemax="100">100%</div>
+            </div>
         </div>
+        <div class="col-md-2" id="mar2">
+            <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100"
+                    aria-valuemin="0" aria-valuemax="100">100%</div>
+            </div>
+        </div>
+        <div class="col-md-2" id="mar3">
+            <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100"
+                    aria-valuemin="0" aria-valuemax="100">100%</div>
+            </div>
+        </div>
+
+        <!-- Pony Div boxes -->
+
+        <div class="col-md-2" id="pon1">
+            <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100"
+                    aria-valuemin="0" aria-valuemax="100">100%</div>
+            </div>
+        </div>
+        <div class="col-md-2" id="pon2">
+            <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100"
+                    aria-valuemin="0" aria-valuemax="100">100%</div>
+            </div>
+        </div>
+        <div class="col-md-2" id="pon3">
+            <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100"
+                    aria-valuemin="0" aria-valuemax="100">100%</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Select an enemy -->
+
+    <div class="row" id="selection">
+        <div class="col-md-4"></div>
+        <div class="col-md-8">Select an Enemy!</div>
+    </div>
+
+
+    <div class="row" id="enemy">
+            <div class="col-md-1"></div>
+        <div class="col-md-2" id="enemyDiv"></div>
+        <div class="col-md-2" id="enemyDiv"></div>
+        <div class="col-md-2" id="enemyDiv"></div>
+    </div>
+
+    <!-- Battle Area -->
+
+    <div class="row" id="selection">
+        <div class="col-md-5"></div>
+        <div class="col-md-7">Battle!</div>
+    </div>
+
+
+    <div class="row" id="battle">
+            <div class="col-md-1"></div>
+        <div class="col-md-2" id="battleDiv"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-danger">ATTACK!</button>
+        </div>
+        <div class="col-md-6">
+            <button type="button" class="btn btn-outline-warning">Reset!</button>
+        </div>
+    </div>
     </div>
 
 
