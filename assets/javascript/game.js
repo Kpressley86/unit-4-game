@@ -1,15 +1,29 @@
 $(document).ready(function () {
 
+    // Variables// 
+
+    let wins = 0;
+
+    let losses = 0;
+
+
+    
+    // Object //
+
     let marvelHeros = {
 
         name: ["juggernaut", "wolverine", "venom"],
 
         damage: [10, 20, 30],
 
-        health: [100, 150, 200, 250],
+        health: [150, 200, 250],
 
-        counterAttack: [5, 10, 15, 20],
-    }
+        counterAttack: [5, 10, 15],
+
+        RandomMarvelStats : function() {
+            
+          }
+    };
 
     let ponyHeros = {
 
@@ -17,22 +31,17 @@ $(document).ready(function () {
 
         damage: [10, 20, 30],
 
-        health: [100, 150, 200, 250],
+        health: [150, 200, 250],
 
-        counterAttack: [5, 10, 15, 20],
-    }
-  
-    // Object //
-    let heroStats = {
+        counterAttack: [5, 10, 15],
 
-        name: ["juggernaut", "wolverine", "venom", "pinkiepie", "rainbowdash", "nightmaremoon"],
-
-        damage: [20, 40, 60, 80],
-
-        health: [100, 150, 200, 250],
-
+        randomPonyStats : function() {
+            
+          }
     };
+  
 
+ 
     // object example and access //
 
     var person = {
@@ -57,9 +66,21 @@ $(document).ready(function () {
 
 
 
+// HEALTH BAR //
 
-
-
+    function move() {
+        var elem = document.getElementById("myBar");
+        var width = 1;
+        var id = setInterval(frame, 10);
+        function frame() {
+          if (width >= 100) {
+            clearInterval(id);
+          } else {
+            width++;
+            elem.style.width = width + '%';
+          }
+        }
+      }
 
 
 
