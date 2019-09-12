@@ -38,86 +38,153 @@ body {
 }
 /* end title */
 
-/* classes */
-.char-banner-text {
-  font-family: 'Libre Baskerville', serif;
+/* Hero Divs*/
+
+.hero {
+
+  border: 2px solid #28a745 !important;
+  opacity: 1;
   color: white;
-  margin-top: 5%;
-  margin-bottom: 5%;
+  height: 250px;
+  width: 250px;
+  text-align: center; 
+  visibility: visible;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center center;
 }
 
-.header-text {
-  font-family: 'Gothic A1', sans-serif;
+.enemy1 , .enemy2, .enemy3 {
+
+  border: 2px solid #dc3545 !important;
+  opacity: 1;
   color: white;
-  font-size: 160%;
-  font-weight: bold;
-}
-
-.status-text {
-  font-family: 'Noto Sans KR', sans-serif;
-  color: white;
-  font-size: 110%;
-  line-height: 80%;
-}
-
-.status-text span {
-  font-size: 125%;
-  font-weight: bold;
-}
-
-.logo {
-  width: 16%;
-  height: auto;
-}
-
-.btn-block {
-  padding: 5%;
-}
-
-/*char banner and pseudo class */
-.char-banner {
-  border: 3px solid #ffffff;
-  opacity:0.85;
-}
-
-.char-banner:hover {
   cursor: pointer; 
-  border: 0.3vw solid #ffffff;
-  opacity: 1;
+  height: 250px;
+  width: 250px;
+  text-align: center; 
+  visibility: visible;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center center;
+  margin-right: 10px;
 }
 
-/* player and enemy classes */
-
-.char-banner-player {
-  border: 0.3vw solid #28a745;
-  opacity: 1;
+.enemy:hover {
+  border: 5px solid #dc3545 !important;
 }
 
-.char-banner-enemy {
-  border: 0.3vw solid #dc3545;
-  opacity: 1;
+.mar1:hover, .mar2:hover, .mar3:hover, .pon1:hover, .pon2:hover, .pon3:hover {
+  border: 5px solid #45f50f;
 }
 
-/* defeated class and hover pseudo class */
-.char-banner-defeated {
-  border: 0.3vw solid #495057;
-  opacity: 0.6;
+.mar1 {
+  border: 2px solid #fcfbfb;
+  background: url("../images/jugger.gif");
+  height: 250px;
+  width: 250px;
+  text-align: center; 
+  visibility: visible;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center center;
+  color:white;
+  cursor: pointer; 
 }
 
-.char-banner-defeated:hover {
-  cursor: auto;
-  opacity: 0.6;
+.mar2 {
+  border: 2px solid #fcfbfb;
+  background: url("../images/wolverine.gif");
+  height: 250px;
+  width: 250px;
+  text-align: center; 
+  visibility: visible;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center center;
+  color:white;
+  cursor: pointer; 
 }
 
-.char-selected {
-  width: 100%;
-  height: auto;
-  border-radius: 3%;
+.mar3 {
+  border: 2px solid #fcfbfb;
+  background: url("../images/venom.gif");
+  height: 250px;
+  width: 250px;
+  text-align: center; 
+  visibility: visible;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center center;
+  color:white;
+  cursor: pointer; 
 }
 
-.char-selected-defeated {
-  width: 100%;
-  height: auto;
-  border-radius: 3%;
-  opacity: 0.6;
+.pon1 {
+  border: 2px solid #fcfbfb;
+  background: url("../images/pony1.gif");
+  height: 250px;
+  width: 250px;
+  text-align: center; 
+  visibility: visible;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center center;
+  color:white;
+  cursor: pointer; 
+}
+
+.pon2 {
+  border: 2px solid #fcfbfb;
+  background: url("../images/pony2.gif");
+  height: 250px;
+  width: 250px;
+  text-align: center; 
+  visibility: visible;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center center;
+  color:white;
+  cursor: pointer; 
+}
+
+.pon3 {
+  border: 2px solid #fcfbfb;
+  background: url("../images/pony3.gif");
+  height: 250px;
+  width: 250px;
+  text-align: center; 
+  visibility: visible;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center center;
+  color:white;
+  cursor: pointer; 
+}
+
+/* BUTTON */
+
+.btn1 {
+  padding-top: 10px;
+  margin-top: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.btn2 {
+  padding-top: 10px;
+  margin-top: 50px;
+  margin-left: 60px;
+  margin-right: 50px;
+}
+
+.progress {
+  position:absolute;
+  bottom:0px;
+  width: 90%;
+}
+/* ROWS */
+
+#enemySelectRow {
+  margin-top: 100px;
 }

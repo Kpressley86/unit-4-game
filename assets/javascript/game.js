@@ -3,31 +3,31 @@ $(document).ready(function () {
     // Game Variables //
     var player = {};
     var enemy = {};
-    var playerChars = [nightmaremoon, wolverine, venom, juggernaut, pinkiepie, rainbowdash];
+    var heroArray = [juggernaut, wolverine, venom, nightmaremoon, pinkiepie, rainbowdash];
     var enemyDefeated = [];
-    var playerActive = true;
+    var heroActive = true;
     var enemyActive = true;
-    var playerSelected = false;
+    var heroSelected = false;
     var enemySelected = false;
 
     // Character Variables //
-    var nightmaremoon = new Character($("#nightmaremoon"), "Nightmare Moon", 1800, 120, 300);
-    var wolverine = new Character($("#wolverine"), "Wolverine", 2200, 140, 450);
-    var venom = new Character($("#venom"), "Venom", 2600, 110, 350);
-    var juggernaut = new Character($("#juggernaut"), "Juggernaut", 1800, 150, 400)
-    var pinkiepie = new Character($("#pinkiepie"), "Pinkie Pie", 1600, 150, 500);
-    var rainbowdash = new Character($("#rainbowdash"), "Rainbow Dash", 1600, 150, 500);
+    var juggernaut = new Character($("#juggernaut"), "Juggernaut", 5800, 480, 1200)
+    var wolverine = new Character($("#wolverine"), "Wolverine", 6600, 420, 1350);
+    var venom = new Character($("#venom"), "Venom", 7800, 330, 1050);
+    var nightmaremoon = new Character($("#nightmaremoon"), "Nightmare Moon", 5400, 360, 900);
+    var pinkiepie = new Character($("#pinkiepie"), "Pinkie Pie", 5700, 450, 1500);
+    var rainbowdash = new Character($("#rainbowdash"), "Rainbow Dash", 4800, 390, 1650);
 
 
     // Object Function //
-    function Character(reference, name, hp, attack, defense) {
-        this.reference = reference;
+    function Character(charId, name, health, attack, counter) {
+        this.reference = charId;
         this.name = name;
-        this.hp = hp;
-        this.attack = attack;
-        this.defense = defense;
+        this.hp = health;
+        this.power = attack;
+        this.defense = counter;
 
-        this.combat = function (enemy) {
+        this.fight = function (enemy) {
             enemy.hp -= this.attack;
             if (enemy.hp <= 0) {
                 this.attack += this.attack;
@@ -36,23 +36,23 @@ $(document).ready(function () {
                 this.attack += this.attack;
                 this.hp -= enemy.defense;
                 if (this.hp <= 0) {
-                    return playerActive = false;
+                    return heroActive = false;
                 }
                 return enemyActive = true;
             }
         }
     }
 
-    function statusText(object) {
-        if (playerSelected === false || object === player) {
+    function stats(object) {
+        if (heroSelected === false || object === player) {
             if (object.hp <= 0) {
-                $("#playerHealth").text("0");
+                $("#heroHealth").text("0");
             } else {
-                $("#playerHealth").text(object.hp);
+                $("#heroHealth").text(object.hp);
             }
-            $("#playerName").text(object.name);
-            $("#playerAttack").text(object.attack);
-        } else if (playerSelected === true && enemySelected === false || object === enemy) {
+            $("#heroName").text(object.name);
+            $("#heroAttack").text(object.attack);
+        } else if (heroSelected === true && enemySelected === false || object === enemy) {
             if (object.hp <= 0) {
                 $("#enemyHealth").text("0");
             } else {
@@ -63,28 +63,28 @@ $(document).ready(function () {
         }
     }
 
-    // Character and Enemy Select Functions //
+    // Character and Enemy Selection Functions //
 
-    function charSelect() {
-        for (let i = 0; i < playerChars.length; i++) {
-            $(playerChars[i].reference).on("mouseover", function () {
-                statusText(playerChars[i]);
+    function heroSelected() {
+        for (let i = 0; i < heroArray.length; i++) {
+            $(heroArray[i].reference).on("mouseover", function () {
+                stats(heroArray[i]);
             })
-            $(playerChars[i].reference).on("click", function () {
-                if (playerSelected === false) {
-                    $("#player").attr("src", $(this).attr("src"));
-                    $(this).addClass("char-banner-player");
+            $(heroArray[i].reference).on("click", function () {
+                if (heroSelected === true) {
+                    $("heroArray[i].refrence").attr("#hero");
+                    $(this).removeAttr("#heroSelectRow");
                     player = {
-                        ...playerChars[i]
+                        ...heroArray[i]
                     };
-                    playerSelected = true;
-                } else if (playerSelected === true && enemySelected === false) {
-                    if ($(this).attr("src") != $("#player").attr("src") && !enemyDefeated.includes(playerChars[i])) {
+                    heroSelected = true;
+                } else if (heroSelected === false && enemySelected === false) {
+                    if ($(this).attr("src") != $("#hero").attr("src") && !enemyDefeated.includes(heroArray[i])) {
                         $("#enemy").attr("src", $(this).attr("src"));
-                        $("#enemy").removeClass("char-selected-defeated");
-                        $(this).addClass("char-banner-enemy");
+                        $("#enemy").removeClass("enemy1");
+                        $(this).addClass("");
                         enemy = {
-                            ...playerChars[i]
+                            ...heroArray[i]
                         };
                         enemySelected = true;
                         enemyActive = true;
@@ -98,9 +98,9 @@ $(document).ready(function () {
 
     function reset() {
 
-        playerActive = true;
+        heroActive = true;
         enemyActive = true;
-        playerSelected = false;
+        heroSelected = false;
         enemySelected = false;
 
         $("#player")
@@ -108,17 +108,17 @@ $(document).ready(function () {
             .attr("src", "./assets/images/venom2.gif");
         $("#enemy").attr("src", "./assets/images/pony5.gif");
         $(".char-banner").removeClass("char-banner-defeated char-banner-player char-banner-enemy");
-        charSelect();
+        heroSelected();
     }
 
     // Attack Function //
 
-    function combatOnClick() {
-        if (playerActive === true && enemyActive === true && enemySelected === true) {
-            player.combat(enemy);
-            statusText(enemy);
-            statusText(player);
-            if (playerActive === false) {
+    function fightOnClick() {
+        if (heroActive === true && enemyActive === true && enemySelected === true) {
+            player.fight(enemy);
+            stats(enemy);
+            stats(player);
+            if (heroActive === false) {
                 $(player.reference).addClass("char-banner-defeated");
                 $("#player").addClass("char-selected-defeated");
 
@@ -129,12 +129,11 @@ $(document).ready(function () {
                 enemyDefeated.push(enemy);
 
                 if (enemyDefeated.length != 4) {
-                    charSelect();
+                    heroSelected();
 
                 } else {
                     $("#enemy")
                         .removeClass("char-selected-defeated")
-                        .attr("src", "assets/images/victory.png");
 
                 }
             }
@@ -146,8 +145,8 @@ $(document).ready(function () {
     $("#attack-btn").on("click", function (event) {
         event.preventDefault();
 
-        if (playerSelected === true && enemySelected === true) {
-            combatOnClick();
+        if (heroSelected === true && enemySelected === true) {
+            fightOnClick();
         }
     });
 
@@ -158,6 +157,6 @@ $(document).ready(function () {
         reset();
     });
 
-    charSelect();
+    heroSelected();
 
 });
