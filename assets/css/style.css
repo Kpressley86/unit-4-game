@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body { 
   background: url("../images/background1.gif") no-repeat center center fixed; 
   -webkit-background-size: cover;
@@ -34,66 +38,86 @@ body {
 }
 /* end title */
 
-* {
-  box-sizing: border-box;
-}
-
-
-html {
-	min-height: 100%;
-	position: relative;
-}
-
-h1 {
-  font-size: 1.5em;
-  margin-left: 70%;
-}
-
-h2 {
-  margin: 0.3rem;
-  font-size: 1.2em;
-}
-
-h3 {
-  text-align: center;
-  font-size: 0.9em;
-}
-
-.char-box {
-  display: inline-block;
-  padding: 1px;
-  border: 2px solid #ebeef2;
-  margin: 0.2%;
-  padding: 0.2em 1em;
-}
-
-.char-img {
-  width: 250px;
-  height: 250px;
-}
-
-#you, #defender-section {
-  height: 115px;
-}
-
-/*** The following classes are dynamically added ***/
-
-/* Your Character */
-.char-box-you {
-  
-  border: 3px solid rgb(42, 161, 240);
-}
-
-/* Enemies Available To Attack */
-.char-box-enemy {
-  background: red;
-  color: black;
-  border: "none";
-}
-
-/* Defender */
-.char-box-defender {
-  background: black;
+/* classes */
+.char-banner-text {
+  font-family: 'Libre Baskerville', serif;
   color: white;
-  border: 3px solid green;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.header-text {
+  font-family: 'Gothic A1', sans-serif;
+  color: white;
+  font-size: 160%;
+  font-weight: bold;
+}
+
+.status-text {
+  font-family: 'Gothic A1', sans-serif;
+  color: white;
+  font-size: 110%;
+  line-height: 80%;
+}
+
+.status-text span {
+  font-size: 125%;
+  font-weight: bold;
+}
+
+.logo {
+  width: 16%;
+  height: auto;
+}
+
+.btn-block {
+  padding: 5%;
+}
+
+/*char banner and pseudo class */
+.char-banner {
+  border: 3px solid #ffffff;
+  opacity:0.85;
+}
+
+.char-banner:hover {
+  cursor: pointer; 
+  border: 0.3vw solid #ffffff;
+  opacity: 1;
+}
+
+/* player and enemy classes */
+
+.char-banner-player {
+  border: 0.3vw solid #28a745;
+  opacity: 1;
+}
+
+.char-banner-enemy {
+  border: 0.3vw solid #dc3545;
+  opacity: 1;
+}
+
+/* defeated class and hover pseudo class */
+.char-banner-defeated {
+  border: 0.3vw solid #495057;
+  opacity: 0.6;
+}
+
+.char-banner-defeated:hover {
+  cursor: auto;
+  opacity: 0.6;
+}
+
+.char-selected {
+  width: 100%;
+  height: auto;
+  border-radius: 3%;
+}
+
+.char-selected-defeated {
+  width: 100%;
+  height: auto;
+  border-radius: 3%;
+  opacity: 0.6;
 }

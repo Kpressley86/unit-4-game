@@ -1,235 +1,172 @@
 $(document).ready(function () {
 
-    function run(game) {
-        $(".char-box").on("click", game, game.setupFight);
-        $("#attack").on("click", game, game.fight);
-        $("#start").hide();
-        $("#start").on("click", game, game.start);
-      }
-      
-      //
-      // Game class
-      //
-      class Game {
-        constructor() {
-          this.player = null;      // player's character name
-          this.enemy = null;       // enemy's character name
-          this.attacker = null;    // player in the fight section
-          this.defender = null;    // enemy in the fight section
-          this.numAttacks = 0;     // the number of attacks
-          this.isOver = false;     // game status boolean
-          this.charBoxes = [];     // save removed character boxes  
-        }
-      
-        //
-        // fight setup through a user character selections 
-        //
-        setupFight(event) {
-          let section_name = $(this).parent().attr("id");
-          console.log($(this).attr("id") + " is clicked on");
-          console.log("parent: " + $(this).parent().attr("id"));
-      
-          // All character boxes are at top initially  
-          if (section_name === 'initial-row') {
-            event.data.player = $(this).attr("id");
-            console.log("You: " + $(this).attr("id") + " is selected");
-            $(this).addClass("char-box-you");
-            $(this).appendTo("#you");
-            $("#initial-row > .char-box").addClass("char-box-enemy");
-            $("#initial-row > .char-box").appendTo("#enemy-section");
-          }
-          // Character elements in the Enemy section
-          else if (section_name === 'enemy-section') {
-            if (!event.data.enemy) {
-              event.data.enemy = $(this).attr("id");
-              console.log("Enemy " + $(this).attr("id") + " is selected");
-              $(this).addClass("char-box-defender");
-              $(this).appendTo("#defender-section");
-              event.data.clearMsg();
-            }
-          }
-          // user can move the enemy defender back to the Enemy section
-          else if (section_name === 'defender-section') {
-            console.log("Enemy " + $(this).attr("id") + " is removed from the defender-section");
-            $(this).removeClass("char-box-defender");
-            $(this).addClass("char-box-enemy");
-            $(this).appendTo("#enemy-section");
-            event.data.enemy = null;
-            event.data.defender = null;
-          }
-        }
-      
-        //
-        // fight as a user clicks on the Attack button 
-        // Fighter class keeps track of character data. 
-        //
-        fight(event) {
-          let thisFight = event.data;
-      
-          if (thisFight.player && !thisFight.attacker) {
-            thisFight.attacker = new Fighter(thisFight.player, 10, 1.0);
-          }
-          if (thisFight.enemy && !thisFight.defender) {
-            thisFight.defender = new Fighter(thisFight.enemy, 10, 1.8);
-          }
-          if (!thisFight.attacker || !thisFight.defender || thisFight.isOver) {
-            if (!thisFight.attacker) {
-              $("#msg1").text("Please select your character");
-            }
-            else if (!thisFight.isOver && !thisFight.defender) {
-              $("#msg1").text("Please select an enemy to attack");
-            }
-            return;
-          }
-      
-          thisFight.numAttacks++;
-          let damage = thisFight.attack();
-          thisFight.displayMessage(damage);
-      
-          if (thisFight.defender.outOfHealthPoints()) {
-            // detach and save it for restart 
-            thisFight.charBoxes.push(thisFight.defender.elem.detach());
-            thisFight.defender = null;
-            thisFight.enemy = null;
-          }
-        }
-      
-        //
-        // A facilitator function for fight()
-        //
-        attack() {
-          let damage = this.attacker.ap * this.numAttacks;
-          this.defender.healthPoints -= damage;
-      
-          if (!this.defender.outOfHealthPoints()) {
-            this.attacker.healthPoints -= this.defender.cAp;
-      
-            if (this.attacker.outOfHealthPoints()) {
-              this.isOver = true;
-            }
-          }
-      
-          return damage;
-        }
-      
-        //
-        // Display the game fighting status messages
-        // game.isOver condition may be updated
-        //
-        displayMessage(damage) {
-          this.clearMsg();
-      
-          // player defeated the enemy
-          if (this.defender.outOfHealthPoints()) {
-            if (this.remainingEnemies() === 0) { // No enemies left
-              $("#msg1").text("You Won!!! GAME OVER!!!");
-              $("#start").show();
-              this.isOver = true;
-            } else {
-              $("#msg1").text(`You have defeated ${this.defender.name}. You can choose to fight another enemy.`);
-            }
-          }
-          // player is out of the Health Point; i.e. lost
-          else if (this.attacker.outOfHealthPoints()) {
-            $("#msg1").text("You've been defeated. GAME OVER!!!");
-            $("#start").show();
-            this.isOver = true;
-          }
-          // still in fight
-          else {
-            $("#msg1").text(`You attacked ${this.defender.name} for ${damage} damage`);
-            $("#msg2").text(`${this.defender.name} attacked you back for ${this.defender.cAp} damage`);
-          }
-        }
-      
-        //
-        // Clear the game status messages at the bottom
-        //
-        clearMsg() {
-          $("#msg1").text("");
-          $("#msg2").text("");
-        }
-      
-        //
-        // The remaining number of enemies
-        //
-        remainingEnemies() {
-          return $("#enemy-section > .char-box").length;
-        }
-      
-        //
-        // (re-)start the game
-        //
-        start(event) {
-          let thisGame = event.data;
-          ['player', 'enemy', 'attacker', 'defender'].forEach(function(e) {
-            thisGame[e] = null;
-          });
-          thisGame.numAttacks = 0;
-          thisGame.isOver = false;
-          thisGame.clearMsg();
-          $("#start").hide();
-          thisGame.resetCharData();
-        }
-      
-        //
-        // facilitator function for start()
-        //
-        resetCharData() {
-          for (let i = 0; i < this.charBoxes.length; i++) {
-            this.charBoxes[i].appendTo($("#initial-row"));
-          }
-          $(".char-box").appendTo("#initial-row");
-          $(".char-box").removeClass("char-box-you");
-          $(".char-box").removeClass("char-box-enemy");
-          $(".char-box").removeClass("char-box-defender");
-          $(".char-box").addClass("char-box");
-          $(".char-hp").each(function() {
-            this.innerText = Math.floor(Math.random() * 70) + 100;
-          });
-        }
-      }
-      
-      //
-      // Character info as a fighter
-      // Keeps track of
-      // * Name
-      // * Health Point
-      // * Attack Power
-      // * Counter Attack Power 
-      //
-      class Fighter {
-        constructor(id, apMax = 10, cApFactor = 1.0) {
-          this.elem = $(`#${id}`);
-          this.name = $(`#${id} h3.char-name`).text();
-          this.hp = $(`#${id} h3.char-hp`); // Health Point
-          this.ap = this.attackPower(apMax);
-          this.cAp = this.counterAttackPower(cApFactor);
-        }
-      
-        attackPower(max = 10, base = 3) {
-          return Math.floor(Math.random() * (max - base)) + base;
-        }
-      
-        counterAttackPower(factor = 1.0) {
-          return Math.floor(this.ap * factor);
-        }
-      
-        outOfHealthPoints() {
-          if (this.healthPoints < 0) {
-            this.healthPoints = 0;
-          }
-          return (this.healthPoints === 0);
-        }
-      
-        set healthPoints(point) {
-          this.hp.text(point);
-        }
-      
-        get healthPoints() {
-          return parseInt(this.hp.text());
-        }
-      }
-
+   	//initializing variables (for on hover/select and Character methods)
+  
+	var nightmaremoon = new Character($("#nightmaremoon"), "Nightmare Moon", 1800, 120, 300);
+	var wolverine = new Character($("#wolverine"), "Wolverine", 2200, 140, 450);
+	var venom = new Character($("#venom"), "Venom", 1600, 110, 350);
+	var juggernaut = new Character($("#juggernaut"), "Juggernaut", 1800, 150, 400)
+    var pinkiepie = new Character($("#pinkiepie"), "Pinkie Pie", 1600, 150, 500);
+    var rainbowdash = new Character($("#rainbowdash"), "Rainbow Dash", 1600, 150, 500);
+  
+	var player = {};
+	var enemy = {};
+	var playerChars = [nightmaremoon, wolverine, venom, juggernaut, pinkiepie, rainbowdash];
+	var enemyDefeated = [];
+  
+	//Character Select Booleans and Character Active booleans
+  
+	var playerActive = true;
+	var enemyActive = true;
+	var playerSelected = false;
+	var enemySelected = false;
+  
+	//object constructor function and object methods
+  
+	function Character(reference, name, hp, attack, defense) {
+	  this.reference = reference;
+	  this.name = name;
+	  this.hp = hp;
+	  this.attack = attack;
+	  this.defense = defense;
+  
+	  this.combat = function (enemy) {
+		enemy.hp -= this.attack;
+		if (enemy.hp <= 0) {
+		  this.attack += this.attack;
+		  return enemyActive = false;
+		} else {
+		  this.attack += this.attack;
+		  this.hp -= enemy.defense;
+		  if (this.hp <= 0) {
+			return playerActive = false;
+		  }
+		  return enemyActive = true;
+		}
+	  }
+	}
+  
+	function statusText(object) {
+	  if (playerSelected === false || object === player) {
+		if (object.hp <= 0) {
+		  $("#playerHealth").text("0");
+		} else {
+		  $("#playerHealth").text(object.hp);
+		}
+		$("#playerName").text(object.name);
+		$("#playerAttack").text(object.attack);
+	  } else if (playerSelected === true && enemySelected === false || object === enemy) {
+		if (object.hp <= 0) {
+		  $("#enemyHealth").text("0");
+		} else {
+		  $("#enemyHealth").text(object.hp);
+		}
+		$("#enemyName").text(object.name);
+		$("#enemyDefense").text(object.defense);
+	  }
+	}
+  
+	// event listener function for character select and stats on hover
+	// event listener function for enemy select (after character select) and after enemy defeated
+  
+	function charSelect() {
+	  for (let i = 0; i < playerChars.length; i++) {
+		$(playerChars[i].reference).on("mouseover", function () {
+		  statusText(playerChars[i]);
+		})
+		$(playerChars[i].reference).click(function () {
+		  if (playerSelected === false) {
+			$("#player").attr("src", $(this).attr("src"));
+			$(this).addClass("char-banner-player");
+			player = { ...playerChars[i]
+			};
+			playerSelected = true;
+		  } else if (playerSelected === true && enemySelected === false) {
+			if ($(this).attr("src") != $("#player").attr("src") && !enemyDefeated.includes(playerChars[i])) {
+			  $("#enemy").attr("src", $(this).attr("src"));
+			  $("#enemy").removeClass("char-selected-defeated");
+			  $(this).addClass("char-banner-enemy");
+			  enemy = { ...playerChars[i]
+			  };
+			  enemySelected = true;
+			  enemyActive = true;
+			}
+		  }
+		})
+	  }
+	}
+  
+	//reset game condition 
+	function reset() {
+	  console.log("The game has been reset")
+  
+	  //resetting initial game condition booleans
+  
+	  playerActive = true;
+	  enemyActive = true;
+	  playerSelected = false;
+	  enemySelected = false;
+  
+	  //removing defeated css classes and clearing #player and #enemy
+  
+	  $("#player")
+		.removeClass("char-selected-defeated")
+		.attr("src", "assets/images/TransparentPlaceholder.png");
+	  $("#enemy").attr("src", "assets/images/TransparentPlaceholder.png");
+	  $(".char-banner").removeClass("char-banner-defeated char-banner-player char-banner-enemy");
+	  charSelect();
+	}
+  
+	// click on attack function, that requires the player and enemy objects
+	// will not run until player select has completed
+  
+	function combatOnClick() {
+	  if (playerActive === true && enemyActive === true && enemySelected === true) {
+		player.combat(enemy);
+		statusText(enemy);
+		statusText(player);
+		if (playerActive === false) {
+		  $(player.reference).addClass("char-banner-defeated");
+		  $("#player").addClass("char-selected-defeated");
+		  console.log("The player character is dead.");
+		} else if (enemyActive === false) {
+		  enemySelected = false;
+		  $(enemy.reference).addClass("char-banner-defeated");
+		  $("#enemy").addClass("char-selected-defeated");
+		  enemyDefeated.push(enemy);
+		  console.log(enemyDefeated);
+		  if (enemyDefeated.length != 4) {
+			charSelect();
+			console.log("The enemy has been defeated.");
+		  } else {
+			$("#enemy")
+			  .removeClass("char-selected-defeated")
+			  .attr("src", "assets/images/victory.png");
+			console.log("this is the winning scenario; still need to balance the game")
+		  }
+		}
+	  }
+	}
+  
+	// on click event listener for attack button (should call on player character methods)
+  
+	$("#attack-btn").on("click", function (event) {
+	  event.preventDefault();
+  
+	  if (playerSelected === true && enemySelected === true) {
+		combatOnClick();
+	  }
+	});
+  
+	//on click event listener for reset button (calls on reset())
+  
+	$("#reset-btn").on("click", function(event) {
+	  event.preventDefault();
+	  reset();
+	});
+  
+	// character select; Used to initialize the game
+  
+	charSelect();
 
 });
