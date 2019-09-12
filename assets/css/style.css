@@ -1,144 +1,99 @@
 body { 
-    background: url("../images/background1.gif") no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    background-size: cover;
-
-  }
-
-  /* title decoration */
-  #wins, #losses {
-    font-size: 40px;
-    color:green;
-  }
-
-  #pony {
-
-    font-family: 'Modak', cursive;
-    color: pink;
-    font-size: 90px;
-    text-shadow: 4px 4px 4px rgb(223, 56, 173);
-
-  }
-
-  #vs {
-
-    font-family: 'Libre Baskerville', serif;
-    font-size: 80px;
-    text-shadow: 4px 4px 4px rgb(110, 110, 110);
-
-  }
-
-  #marvel {
-
-    font-family: 'Noto Sans KR', sans-serif;
-    color: red;
-    font-size: 80px;
-    text-shadow: 4px 4px 4px rgb(109, 7, 7);
-
-  }
-
-  #selection {
-    
-    font-family: 'Noto Sans KR', sans-serif;
-    color: rgb(32, 32, 30);
-    font-size: 50px;
-    text-shadow: 3px 3px 3px rgb(255, 255, 255);
-
-  }
-/* Hero select row */
-/* 
-#heroselect {
-
-} 
-#enemy {
+  background: url("../images/background1.gif") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  background-size: cover;
 
 }
-#battle {
+
+/* title decoration */
+
+#pony {
+
+  font-family: 'Modak', cursive;
+  color: pink;
+  font-size: 90px;
+  text-shadow: 4px 4px 4px rgb(223, 56, 173);
 
 }
-*/
 
-/* Hero box display */
+#vs {
 
-#mar1 { 
-  background: url(../images/jugger.gif) 50% 50% no-repeat;
-  width: 250px;
-  height: 250px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 80px;
+  text-shadow: 4px 4px 4px rgb(110, 110, 110);
+
+}
+
+#marvel {
+
+  font-family: 'Noto Sans KR', sans-serif;
+  color: red;
+  font-size: 80px;
+  text-shadow: 4px 4px 4px rgb(109, 7, 7);
+
+}
+/* end title */
+
+* {
+  box-sizing: border-box;
+}
+
+
+html {
+	min-height: 100%;
+	position: relative;
+}
+
+h1 {
+  font-size: 1.5em;
+  margin-left: 70%;
+}
+
+h2 {
+  margin: 0.3rem;
+  font-size: 1.2em;
+}
+
+h3 {
+  text-align: center;
+  font-size: 0.9em;
+}
+
+.char-box {
+  display: inline-block;
   padding: 1px;
   border: 2px solid #ebeef2;
+  margin: 0.2%;
+  padding: 0.2em 1em;
 }
 
-#mar2 { 
-  background: url(../images/wolverine.gif) 50% 50% no-repeat;
+.char-img {
   width: 250px;
   height: 250px;
-  padding: 1px;
-  border: 2px solid #ebeef2;
 }
 
-#mar3 { 
-  background: url(../images/venom.gif) 50% 50% no-repeat;
-  width: 250px;
-  height: 250px;
-  padding: 1px;
-  border: 2px solid #ebeef2;
+#you, #defender-section {
+  height: 115px;
 }
 
-#pon1 { 
-  background: url(../images/pony1.gif) 50% 50% no-repeat;
-  width: 250px;
-  height: 250px;
-  padding: 1px;
-  border: 2px solid #ebeef2;
-}
+/*** The following classes are dynamically added ***/
 
-#pon2 { 
-  background: url(../images/pony2.gif) 50% 50% no-repeat;
-  width: 250px;
-  height: 250px;
-  padding: 1px;
-  border: 2px solid #ebeef2;
-}
-
-#pon3 { 
-  background: url(../images/pony3.gif) 50% 50% no-repeat;
-  width: 250px;
-  height: 250px;
-  padding: 1px;
-  border: 2px solid #ebeef2;
-}
-
-#enemyDiv {
-  width: 250px;
-  height: 250px;
-  padding: 1px;
-  border: 2px solid #e67c1a;
-}
-
-#battleDiv {
-  width: 250px;
-  height: 250px;
-  padding: 1px;
-  border: 2px solid #f70101;
-}
-
-
-
-/* Small devices (landscape phones, 576px and up) */
-
-@media (min-width: 576px) { 
+/* Your Character */
+.char-box-you {
   
- }
-
-/* Medium devices (tablets, 768px and up) */
-
-@media (min-width: 768px) { 
-  
+  border: 3px solid rgb(42, 161, 240);
 }
 
-/* Large devices (desktops, 992px and up) */
+/* Enemies Available To Attack */
+.char-box-enemy {
+  background: red;
+  color: black;
+  border: "none";
+}
 
-@media (min-width: 992px) { 
-  
- }
-
+/* Defender */
+.char-box-defender {
+  background: black;
+  color: white;
+  border: 3px solid green;
+}
