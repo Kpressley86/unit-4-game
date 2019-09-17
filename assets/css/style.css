@@ -92,75 +92,7 @@ body {
   cursor: pointer; 
 }
 
-.mar2 {
-  border: 2px solid #fcfbfb;
-  background: url("../images/wolverine.gif");
-  height: 250px;
-  width: 250px;
-  text-align: center; 
-  visibility: visible;
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-position: center center;
-  color:white;
-  cursor: pointer; 
-}
 
-.mar3 {
-  border: 2px solid #fcfbfb;
-  background: url("../images/venom.gif");
-  height: 250px;
-  width: 250px;
-  text-align: center; 
-  visibility: visible;
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-position: center center;
-  color:white;
-  cursor: pointer; 
-}
-
-.pon1 {
-  border: 2px solid #fcfbfb;
-  background: url("../images/pony1.gif");
-  height: 250px;
-  width: 250px;
-  text-align: center; 
-  visibility: visible;
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-position: center center;
-  color:white;
-  cursor: pointer; 
-}
-
-.pon2 {
-  border: 2px solid #fcfbfb;
-  background: url("../images/pony2.gif");
-  height: 250px;
-  width: 250px;
-  text-align: center; 
-  visibility: visible;
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-position: center center;
-  color:white;
-  cursor: pointer; 
-}
-
-.pon3 {
-  border: 2px solid #fcfbfb;
-  background: url("../images/pony3.gif");
-  height: 250px;
-  width: 250px;
-  text-align: center; 
-  visibility: visible;
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-position: center center;
-  color:white;
-  cursor: pointer; 
-}
 
 /* BUTTON */
 
@@ -168,13 +100,6 @@ body {
   padding-top: 10px;
   margin-top: 50px;
   margin-left: 50px;
-  margin-right: 50px;
-}
-
-.btn2 {
-  padding-top: 10px;
-  margin-top: 50px;
-  margin-left: 60px;
   margin-right: 50px;
 }
 
@@ -187,4 +112,104 @@ body {
 
 #enemySelectRow {
   margin-top: 100px;
+}
+
+/*Side Note for user */
+#side_note{
+	font-size: 12px;
+	color: black;
+
+	font-family: Tahoma, Geneva, sans-serif;
+}
+
+
+/*Resize Images*/
+img{
+	height: 200px;
+	width: 200px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+
+/*Character "cards"*/
+.stats_card{
+	border: solid;
+	border-width: 2px;
+	border-color: black;
+	float: left;
+
+	width: 180px;
+	/*height: 100px;*/
+
+	text-align: center;
+
+	margin-left: 5px;
+	margin-right: 5px;
+
+	padding-top: 5px;
+	padding-bottom: 5px;
+
+}
+
+
+
+h1{
+	/*Clear the character contianing divs*/
+	clear: both;
+
+	padding-top: 10px;
+	padding-bottom: 10px;
+
+	font-size: 20px;
+}
+
+
+h1.game_head{
+	font-weight: bold;
+}
+
+
+/*Pre-Set Heights of divs*/
+#heroList{
+	height: 100px;
+}
+#enemy_list{
+	height: 100px;
+}
+#defend_list{
+	height: 100px;
+}
+
+
+/*Battle Comment*/
+#battle_comments{
+	clear: both;
+}
+
+
+
+/*--------------- Dynamic Styles for jQuery ---------------*/
+.enemy_stats_card{
+	background-color: #e60000;
+	border-color: black;
+}
+
+.your_stats_card{
+	border-color: #00ff00;
+}
+
+.defender_stats_card{
+	border-color: red;
+	background-color: black;
+	color: white;
+}
+
+.hide_dead_enemy{
+	/*visibility: hidden;*/
+	display: none;
+}
+
+.inline_bold{
+	font-weight: bold;
 }
