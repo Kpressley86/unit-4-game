@@ -21,102 +21,98 @@
 
 <body>
 
-    <!-- Title -->
-    <div class="row" id="title">
-        <div class="col-md-4"></div>
-        <div class="col-md-2">
-            <h1 id="marvel">Marvel&nbsp</h1>
-        </div>
-        <div class="col-md-1">
-            <h1 id="vs">VS.</h1>
-        </div>
-        <div class="col-md-5">
-            <h1 id="pony">&nbspPony</h1>
-        </div>
-    </div>
+    <div id="container">
 
-    <!-- Character Select Row -->
-    <div class="row" id="heroSelectRow">
-
-        <div class="col-2 mar1" id="juggernaut">
-            <h6>Juggernaut</h6>
-            <div class="progress">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100"
-                    aria-valuemin="0" aria-valuemax="100">100%</div>
-            </div>
-        </div>
-
-        <div class="col-2 mar2" id="wolverine">
-            <h6>Wolverine</h6>
-            <div class="progress">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100"
-                    aria-valuemin="0" aria-valuemax="100">100%</div>
-            </div>
-        </div>
-
-        <div class="col-2 mar3" id="venom">
-            <h6>Venom</h6>
-            <div class="progress">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100"
-                    aria-valuemin="0" aria-valuemax="100">100%</div>
-            </div>
-        </div>
-
-        <div class="col-2 pon1" id="nightmaremoon">
-            <h6>Nightmare Moon</h6>
-            <div class="progress">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100"
-                    aria-valuemin="0" aria-valuemax="100">100%</div>
-            </div>
-        </div>
-
-        <div class="col-2 pon2" id="pinkiepie">
-            <h6>Pinkie Pie</h6>
-            <div class="progress">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100"
-                    aria-valuemin="0" aria-valuemax="100">100%</div>
-            </div>
-        </div>
-
-        <div class="col-2 pon3" id="rainbowdash">
-            <h6>Rainbow Dash</h6>
-            <div class="progress">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100"
-                    aria-valuemin="0" aria-valuemax="100">100%</div>
-            </div>
-        </div>
-
-        <!-- Enemy Select Row hidden till hero selected -->
-        <div class="row" id="enemySelectRow">
-            <div class="col-md-1"></div>
-            <div id="hero" class="col-md-2 hero">
-
-                <h4 id="heroAttack"></h4>
-            </div>
+        <!-- Title -->
+        <div class="row" id="title">
+            <div class="col-md-4"></div>
             <div class="col-md-2">
-                <div class="row">
-                    <button type="button" class="btn btn-danger btn-lg btn1" id="attack-btn">ATTACK!</button>
-                </div>
-
-                <div class="row">
-                    <button type="button" class="btn btn-warning btn-lg btn2" id="reset-btn">RESET</button>
-                </div>
+                <h1 id="marvel">Marvel&nbsp</h1>
             </div>
-            <div class="col-md-2 enemy1">
-
-
-                <h4 id="enemyCounter"></h4>
+            <div class="col-md-1">
+                <h1 id="vs">VS.</h1>
             </div>
-            <div class="col-md-2 enemy2">
-
-                <h4 id="enemyCounter"></h4>
+            <div class="col-md-5">
+                <h1 id="pony">&nbspPony</h1>
             </div>
-            <div class="col-md-2 enemy3">
-
-                <h4 id="enemyCounter"></h4>
-            </div>
-            <div class="col-md-1"></div>
         </div>
+
+        <div class="row">
+            <div class="col-md-6"></div>
+            <h1 class="game_head">Select a Hero</h1>
+        </div>
+
+        <!-- Container for all characters -->
+        <div class="row">
+            <div id="heroList">
+
+                <!-- Starting Character Boxes -->
+                <div id="juggernaut" class="col-md-2 stats_card" value="170">
+                    <h2>Juggernaut</h2>
+                    <img src="./assets/images/jugger.gif">
+                    <p id="juggernautHp">200</p>
+                </div>
+
+                <div id="wolverine" class="col-md-2 stats_card" value=140>
+                    <h2>Wolverine</h2>
+                    <img src="./assets/images/wolverine.gif">
+                    <p id="wolverineHp">250</p>
+                </div>
+
+                <div id="venom" class="col-md-2 stats_card" value=180>
+                    <h2>Venom</h2>
+                    <img src="./assets/images/venom.gif">
+                    <p id="venomHP">150</p>
+                </div>
+
+                <div id="nightmaremoon" class="col-md-2 stats_card" value=150>
+                    <h2>Nightmare Moon</h2>
+                    <img src="./assets/images/pony1.gif">
+                    <p id="nightmaremoonHp">150</p>
+                </div>
+
+                <div id="pinkiepie" class="col-md-2 stats_card" value=150>
+                    <h2>Pinkie Pie</h2>
+                    <img src="./assets/images/pony2.gif">
+                    <p id="pinkiepieHp">250</p>
+                </div>
+
+                <div id="rainbowdash" class="col-md-2 stats_card" value=150>
+                    <h2>Rainbow Dash</h2>
+                    <img src="./assets/images/pony3.gif">
+                    <p id="rainbowdashHp">200</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <h1 class="game_head">Select an Enemy</h1>
+        </div>
+
+
+        <!-- Container for all Enemies -->
+        <div class="row">
+            <div id="enemy_list"></div>
+        </div>
+
+        <!-- Attack Button -->
+        <div class="row">
+            <button type="button" class="btn btn-danger btn-lg btn1" id="attack-btn">ATTACK!</button>
+        </div>
+
+
+        <h1 class="game_head">Enemy</h1>
+
+        <!-- Container for selected enemy -->
+        <div class="row">
+            <div id="defend_list"></div>
+        </div>
+
+
+        <!-- Battle Comments -->
+        <div id="battle_comments" class="game_head"></div>
+
+    </div>
 </body>
 
 </html>
