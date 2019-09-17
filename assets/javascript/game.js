@@ -1,162 +1,356 @@
 $(document).ready(function () {
 
-    // Game Variables //
-    var player = {};
-    var enemy = {};
-    var heroArray = [juggernaut, wolverine, venom, nightmaremoon, pinkiepie, rainbowdash];
-    var enemyDefeated = [];
-    var heroActive = true;
-    var enemyActive = true;
-    var heroSelected = false;
+    // Declare Global Variables for Game Flow
+    var charSelected = false;
+    var yourChar;
+
     var enemySelected = false;
+    var yourEnemy;
+    var enemyName;
+    var readyToAttack = false;
 
-    // Character Variables //
-    var juggernaut = new Character($("#juggernaut"), "Juggernaut", 5800, 480, 1200)
-    var wolverine = new Character($("#wolverine"), "Wolverine", 6600, 420, 1350);
-    var venom = new Character($("#venom"), "Venom", 7800, 330, 1050);
-    var nightmaremoon = new Character($("#nightmaremoon"), "Nightmare Moon", 5400, 360, 900);
-    var pinkiepie = new Character($("#pinkiepie"), "Pinkie Pie", 5700, 450, 1500);
-    var rainbowdash = new Character($("#rainbowdash"), "Rainbow Dash", 4800, 390, 1650);
+    var bodyCount = 0;
 
 
-    // Object Function //
-    function Character(charId, name, health, attack, counter) {
-        this.reference = charId;
-        this.name = name;
-        this.hp = health;
-        this.power = attack;
-        this.defense = counter;
 
-        this.fight = function (enemy) {
-            enemy.hp -= this.attack;
-            if (enemy.hp <= 0) {
-                this.attack += this.attack;
-                return enemyActive = false;
-            } else {
-                this.attack += this.attack;
-                this.hp -= enemy.defense;
-                if (this.hp <= 0) {
-                    return heroActive = false;
-                }
-                return enemyActive = true;
+    // Declare Global Variables for Character Attributes
+    var yourHealth;
+    var enemyHealth;
+
+    // Enemy Counter Attacks
+    var enemyAttack;
+    var juggernautCountAttack = 12;
+    var wolverineCountAttack = 9;
+    var venomCountAttack = 17;
+    var nightmaremoonCountAttack = 21;
+    var pinkiepieCounterAttack = 19;
+    var rainbowdashCounterAttack = 11;
+
+    // Your Base Attacks
+    var yourAttack = 0;
+    var yourBaseAttack;
+    var juggernautBaseAttack = 8;
+    var wolverineBaseAttack = 20;
+    var venomBaseAttack = 6;
+    var nightmaremoonBaseAttack = 9;
+    var pinkiepieBaseAttack = 13;
+    var rainbowdashBaseAttack = 16;
+
+
+
+    // Move Characters to Enemy Div on Selection of your character
+    $(".stats_card").on("click", function () {
+        if (charSelected == false) {
+
+            // Remove any old Battle commentary
+            $('.commented').remove()
+
+            // Blindly move all characters to enemy
+            $("#juggernaut").appendTo("#enemy_list").addClass("enemy_stats_card");
+            $("#wolverine").appendTo("#enemy_list").addClass("enemy_stats_card");
+            $("#venom").appendTo("#enemy_list").addClass("enemy_stats_card");
+            $("#nightmaremoon").appendTo("#enemy_list").addClass("enemy_stats_card");
+            $("#pinkiepie").appendTo("#enemy_list").addClass("enemy_stats_card");
+            $("#rainbowdash").appendTo("#enemy_list").addClass("enemy_stats_card");
+
+
+            // Move selected character back to your div
+            $(this).removeClass("enemy_stats_card").addClass("your_stats_card").appendTo("#char_list");
+
+
+            // Collect id of your character and attributes
+            yourChar = this.id;
+            yourHealth = $(this).attr('value');
+
+
+            // Set your base attack
+            if (yourChar == 'juggernaut') {
+                yourBaseAttack = juggernautBaseAttack;
             }
-        }
-    }
-
-    function stats(object) {
-        if (heroSelected === false || object === player) {
-            if (object.hp <= 0) {
-                $("#heroHealth").text("0");
-            } else {
-                $("#heroHealth").text(object.hp);
+            if (yourChar == 'wolverine') {
+                yourBaseAttack = wolverineBaseAttack;
             }
-            $("#heroName").text(object.name);
-            $("#heroAttack").text(object.attack);
-        } else if (heroSelected === true && enemySelected === false || object === enemy) {
-            if (object.hp <= 0) {
-                $("#enemyHealth").text("0");
-            } else {
-                $("#enemyHealth").text(object.hp);
+            if (yourChar == 'venom') {
+                yourBaseAttack = venomBaseAttack;
             }
-            $("#enemyName").text(object.name);
-            $("#enemyDefense").text(object.defense);
-        }
-    }
-
-    // Character and Enemy Selection Functions //
-
-    function heroSelected() {
-        for (let i = 0; i < heroArray.length; i++) {
-            $(heroArray[i].reference).on("mouseover", function () {
-                stats(heroArray[i]);
-            })
-            $(heroArray[i].reference).on("click", function () {
-                if (heroSelected === true) {
-                    $("heroArray[i].refrence").attr("#hero");
-                    $(this).removeAttr("#heroSelectRow");
-                    player = {
-                        ...heroArray[i]
-                    };
-                    heroSelected = true;
-                } else if (heroSelected === false && enemySelected === false) {
-                    if ($(this).attr("src") != $("#hero").attr("src") && !enemyDefeated.includes(heroArray[i])) {
-                        $("#enemy").attr("src", $(this).attr("src"));
-                        $("#enemy").removeClass("enemy1");
-                        $(this).addClass("");
-                        enemy = {
-                            ...heroArray[i]
-                        };
-                        enemySelected = true;
-                        enemyActive = true;
-                    }
-                }
-            })
-        }
-    }
-
-    // Resetting the game //
-
-    function reset() {
-
-        heroActive = true;
-        enemyActive = true;
-        heroSelected = false;
-        enemySelected = false;
-
-        $("#player")
-            .removeClass("char-selected-defeated")
-            .attr("src", "./assets/images/venom2.gif");
-        $("#enemy").attr("src", "./assets/images/pony5.gif");
-        $(".char-banner").removeClass("char-banner-defeated char-banner-player char-banner-enemy");
-        heroSelected();
-    }
-
-    // Attack Function //
-
-    function fightOnClick() {
-        if (heroActive === true && enemyActive === true && enemySelected === true) {
-            player.fight(enemy);
-            stats(enemy);
-            stats(player);
-            if (heroActive === false) {
-                $(player.reference).addClass("char-banner-defeated");
-                $("#player").addClass("char-selected-defeated");
-
-            } else if (enemyActive === false) {
-                enemySelected = false;
-                $(enemy.reference).addClass("char-banner-defeated");
-                $("#enemy").addClass("char-selected-defeated");
-                enemyDefeated.push(enemy);
-
-                if (enemyDefeated.length != 4) {
-                    heroSelected();
-
-                } else {
-                    $("#enemy")
-                        .removeClass("char-selected-defeated")
-
-                }
+            if (yourChar == 'nightmaremoon') {
+                yourBaseAttack = nightmaremoonBaseAttack;
             }
-        }
-    }
+            if (yourChar == 'pinkiepie') {
+                yourBaseAttack = pinkiepieBaseAttack;
+            }
+            if (yourChar == 'rainbowdash') {
+                yourBaseAttack = rainbowdashBaseAttack;
+            }
 
-    // Attack Button //
 
-    $("#attack-btn").on("click", function (event) {
-        event.preventDefault();
-
-        if (heroSelected === true && enemySelected === true) {
-            fightOnClick();
+            // Change global variable and return
+            charSelected = true;
+            return;
         }
     });
 
-    // Reset Button //
 
-    $("#reset-btn").on("click", function (event) {
-        event.preventDefault();
-        reset();
+
+
+    // Move selected Enemy to Defender Div
+    $(".stats_card").on("click", function () {
+        if (this.id != yourChar && enemySelected == false) {
+
+            // Move enemy to defend area
+            $(this).appendTo("#defend_list").removeClass('enemy_stats_card').addClass('defender_stats_card');
+
+            // Collect id of your enemy and attributes
+            yourEnemy = this.id;
+            enemyHealth = $(this).attr('value');
+
+            // Remove any old Battle commentary
+            $('.commented').remove();
+
+            // Change global variable and return
+            enemySelected = true;
+            readyToAttack = true;
+            return;
+        }
+
     });
 
-    heroSelected();
 
+
+
+    // Begin the battle
+    $("#attack").on("click", function () {
+
+        if (readyToAttack) {
+
+            // Test you and defender are alive
+            if (yourHealth > 0 && enemyHealth > 0) {
+
+                // Remove any old Battle commentary
+                $('.commented').remove();
+
+
+                // Increment your attack
+                yourAttack += yourBaseAttack;
+
+
+                // Determine Enemy Counter Attack
+                if (yourEnemy == 'juggernaut') {
+                    enemyAttack = juggernautCountAttack;
+                }
+                if (yourEnemy == 'wolverine') {
+                    enemyAttack = wolverineCountAttack;
+                }
+                if (yourEnemy == 'venom') {
+                    enemyAttack = venomCountAttack;
+                }
+                if (yourEnemy == 'nightmaremoon') {
+                    enemyAttack = nightmaremoonCountAttack;
+                }
+                if (yourEnemy == 'pinkiepie') {
+                    enemyAttack = pinkiepieCountAttack;
+                }
+                if (yourEnemy == 'rainbowdash') {
+                    enemyAttack = rainbowdashCountAttack;
+                }
+
+
+                // Battle Logic
+                yourHealth = yourHealth - enemyAttack;
+                enemyHealth = enemyHealth - yourAttack;
+
+
+                // Play Light Saber sound
+                saberSound.play();
+
+
+                // Change Enemy Stats on screen
+                if (yourEnemy == 'juggernaut') {
+                    $('#juggernautHp').html(enemyHealth);
+                    enemyName = "Juggernaut";
+                }
+                if (yourEnemy == 'wolverine') {
+                    $('#wolverineHp').html(enemyHealth);
+                    enemyName = "Wolverine";
+                }
+                if (yourEnemy == 'venom') {
+                    $('#venomHp').html(enemyHealth);
+                    enemyName = "Venom";
+                }
+                if (yourEnemy == 'nightmaremoon') {
+                    $('#nightmaremoonHp').html(enemyHealth);
+                    enemyName = "Nightmare Moon";
+                }
+                if (yourEnemy == 'pinkiepie') {
+                    $('#pinkiepieHp').html(enemyHealth);
+                    enemyName = "Pinkie Pie";
+                }
+                if (yourEnemy == 'rainbowdash') {
+                    $('#rainbowdashHp').html(enemyHealth);
+                    enemyName = "Rainbow Dash";
+                }
+
+
+                // Change Your Stats on screen
+                if (yourChar == 'juggernaut') {
+                    $('#juggernautHp').html(yourHealth);
+                }
+                if (yourChar == 'wolverine') {
+                    $('#wolverineHp').html(yourHealth);
+                }
+                if (yourChar == 'venom') {
+                    $('#venomHp').html(yourHealth);
+                }
+                if (yourChar == 'nightmaremoon') {
+                    $('#nightmaremoonHp').html(yourHealth);
+                }
+                if (yourChar == 'pinkiepie') {
+                    $('#pinkiepieHp').html(yourHealth);
+                }
+                if (yourChar == 'rainbowdash') {
+                    $('#rainbowdashHp').html(yourHealth);
+                }
+
+
+                // Display battle commentary
+                $('#battle_comments').append("<p class = 'commented'>You attacked " + "<span class = inline_bold>" + enemyName + "</span>" + " for " + "<span class = inline_bold>" + yourAttack + "</span>" + " damage.</p>");
+                $('#battle_comments').append("<p class = 'commented'>" + enemyName + " attacked <span class = inline_bold>you</span> back for " + "<span class = inline_bold>" + enemyAttack + "</span>" + " damage.</p>");
+
+            }
+
+            // Lose - you are dead
+            if (yourHealth <= 0) {
+
+                // Remove any old Battle commentary
+                $('.commented').remove();
+
+                // Display loser message
+                $('#battle_comments').append("<p>You have been defeated... Game Over!</p>");
+                $('#battle_comments').append("<button id = 'restart'>Try Again!</button>");
+
+                // Restart the page for loss
+                $("#restart").on("click", function () {
+                    location.reload();
+                });
+
+                // Change global variable and return
+                readyToAttack = false;
+                return;
+
+            }
+
+            // Win - defender is dead
+            if (enemyHealth <= 0) {
+
+                // Increment the body count
+                bodyCount += 1;
+
+
+                // Remove any old Battle commentary
+                $('.commented').remove();
+
+
+                // Hide the dead body...
+                if (yourEnemy == 'juggernaut') {
+                    $('#juggernaut').addClass('hide_dead_enemy');
+                    enemyName = "Juggernaut";
+                }
+                if (yourEnemy == 'wolverine') {
+                    $('#wolverine').addClass('hide_dead_enemy');
+                    enemyName = "Wolverine";
+                }
+                if (yourEnemy == 'venom') {
+                    $('#venom').addClass('hide_dead_enemy');
+                    enemyName = "Darth venomous";
+                }
+                if (yourEnemy == 'nightmaremoon') {
+                    $('#nightmaremoon').addClass('hide_dead_enemy');
+                    enemyName = "Darth nightmaremoon";
+                }
+                if (yourEnemy == 'pinkiepie') {
+                    $('#pinkiepie').addClass('hide_dead_enemy');
+                    enemyName = "Pinkie Pie";
+                }
+                if (yourEnemy == 'rainbowdash') {
+                    $('#rainbowdash').addClass('hide_dead_enemy');
+                    enemyName = "Rainbow Dash";
+                }
+
+
+                // Check to see if all enemies are dead
+                if (bodyCount < 3) {
+
+                    // Ask User to challenge another guy
+                    $('#battle_comments').append("<p class = 'commented'>You have defeated " + "<span class = inline_bold>" + enemyName + "</span>" + ", choose another opponent!</p>");
+
+                    // Change global variable and return
+                    readyToAttack = false;
+                    enemySelected = false;
+                    return;
+                }
+                else {
+
+                    // Remove any old Battle commentary
+                    $('.commented').remove();
+
+                    $('#battle_comments').append("<p class = 'commented'>Everyone is dead YOU WIN!</p>");
+                    $('#battle_comments').append("<button id = 'replay'>Reset Game</button>");
+
+                    // Restart the page for loss
+                    $("#replay").on("click", function () {
+                        location.reload();
+                    });
+
+                    // Change global variable and return
+                    readyToAttack = false;
+                    return;
+                }
+
+            }
+
+        }
+
+        // No Character Selected
+        else if (charSelected == false) {
+            // Remove any old Battle commentary
+            $('.commented').remove();
+            $('#replay').remove();
+
+            // Display idiot message
+            $('#battle_comments').append("<p class = commented>Please select a HERO!</p>");
+        }
+        // No Enemy to attack
+        else if (enemySelected == false) {
+            // Remove any old Battle commentary
+            $('.commented').remove();
+            $('#replay').remove();
+
+            // Display idiot message
+            $('#battle_comments').append("<p class = commented>Please select an ENEMY!</p>");
+        }
+
+    });
 });
+
+
+
+
+//  // HEALTH BAR //
+
+//  function move() {
+//     var elem = document.getElementById("myBar");
+//     var width = 1;
+//     var id = setInterval(frame, 10);
+//     function frame() {
+//         if (width >= 100) {
+//             clearInterval(id);
+//         } else {
+//             width++;
+//             elem.style.width = width + '%';
+//         }
+//     }
+// }
+
+
+//   // Color change on % //
+//   $if(bi(level) > 90, #00FF00, bi(level) > 70, #22AA00, bi(level) > 50, #999900, #FF4400)$
