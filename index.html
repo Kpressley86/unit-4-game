@@ -1,117 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/test.css">
+    <!-- BOOTSTRAP -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Google FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Modak|Noto+Sans+KR&display=swap"
         rel="stylesheet">
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <!-- JavaScript -->
     <script src="./assets/javascript/game.js"></script>
 
-    <title>Marvel VS. Pony RPG</title>
 
+    <title>Marvel VS. Pony RPG</title>
 </head>
 
 <body>
+    <div class="main-container">
 
-    <div id="container">
+        <header class="header">
+            <div class="row" id="title">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-4">
+                    <h1 id="marvel">Marvel&nbsp</h1>
+                </div>
+                <div class="col-sm-2">
+                    <h1 id="vs">VS.</h1>
+                </div>
+                <div class="col-sm-2">
+                    <h1 id="pony">&nbspPony</h1>
+                </div>
+                <div class="col-sm-3"></div>
+            </div>
+        </header>
 
-        <!-- Title -->
-        <div class="row" id="title">
-            <div class="col-md-4"></div>
-            <div class="col-md-2">
-                <h1 id="marvel">Marvel&nbsp</h1>
-            </div>
-            <div class="col-md-1">
-                <h1 id="vs">VS.</h1>
-            </div>
-            <div class="col-md-5">
-                <h1 id="pony">&nbspPony</h1>
-            </div>
+        <div class="row">
+            <div id="game-end-container"></div>
+            <div id="game-end-text-container"></div>
         </div>
 
         <div class="row">
-            <div class="col-md-6"></div>
-            <h1 class="game_head">Select a Hero</h1>
+            <div class="character-selection-section">
+                <img class="character" id="juggernaut" src="./assets/images/jugger.gif">
+                <img class="character" id="wolverine" src="./assets/images/wolverine.gif">
+                <img class="character" id="venom" src="./assets/images/venom.gif">
+                <img class="character" id="midnight" src="./assets/images/pony1.gif">
+                <img class="character" id="pinkie" src="./assets/images/pony2.gif">
+                <img class="character" id="rainbow" src="./assets/images/pony3.gif">
+            </div>
+        </div>
+        <br><br><br><br>
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div id="select-text">☠ Select A Hero ☠</div>
         </div>
 
-        <!-- Container for all characters -->
         <div class="row">
-            <div id="heroList">
-
-                <!-- Starting Character Boxes -->
-                <div id="juggernaut" class="col-md-2 stats_card" value="170">
-                    <h2>Juggernaut</h2>
-                    <img src="./assets/images/jugger.gif">
-                    <p id="juggernautHp">200</p>
-                </div>
-
-                <div id="wolverine" class="col-md-2 stats_card" value=140>
-                    <h2>Wolverine</h2>
-                    <img src="./assets/images/wolverine.gif">
-                    <p id="wolverineHp">250</p>
-                </div>
-
-                <div id="venom" class="col-md-2 stats_card" value=180>
-                    <h2>Venom</h2>
-                    <img src="./assets/images/venom.gif">
-                    <p id="venomHP">150</p>
-                </div>
-
-                <div id="nightmaremoon" class="col-md-2 stats_card" value=150>
-                    <h2>Nightmare Moon</h2>
-                    <img src="./assets/images/pony1.gif">
-                    <p id="nightmaremoonHp">150</p>
-                </div>
-
-                <div id="pinkiepie" class="col-md-2 stats_card" value=150>
-                    <h2>Pinkie Pie</h2>
-                    <img src="./assets/images/pony2.gif">
-                    <p id="pinkiepieHp">250</p>
-                </div>
-
-                <div id="rainbowdash" class="col-md-2 stats_card" value=150>
-                    <h2>Rainbow Dash</h2>
-                    <img src="./assets/images/pony3.gif">
-                    <p id="rainbowdashHp">200</p>
-                </div>
+            <div class="col-sm-1"></div>
+            <div class="arena">
+                <img id='throne-room' src='./assets/images/street.gif'>
+                <div id="player-name"></div>
+                <div id="player-total-hp"></div>
+                <div id="opponent-name"></div>
+                <div id="opponent-total-hp"></div>
+                <div id="player-fight-area"></div>
+                <div id="opponent-fight-area"></div>
             </div>
         </div>
 
         <div class="row">
-            <h1 class="game_head">Select an Enemy</h1>
+            <button id="attack-button">⚔️ Fight! ⚔️</button>
         </div>
-
-
-        <!-- Container for all Enemies -->
-        <div class="row">
-            <div id="enemy_list"></div>
-        </div>
-
-        <!-- Attack Button -->
-        <div class="row">
-            <button type="button" class="btn btn-danger btn-lg btn1" id="attack-btn">ATTACK!</button>
-        </div>
-
-
-        <h1 class="game_head">Enemy</h1>
-
-        <!-- Container for selected enemy -->
-        <div class="row">
-            <div id="defend_list"></div>
-        </div>
-
-
-        <!-- Battle Comments -->
-        <div id="battle_comments" class="game_head"></div>
-
     </div>
 </body>
 

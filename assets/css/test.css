@@ -1,0 +1,226 @@
+p* {
+    box-sizing: border-box;
+  }
+  body{
+    background: url("../images/background1.gif") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    background-size: cover;
+  }
+
+  /* title decoration */
+
+#pony {
+
+    font-family: 'Modak', cursive;
+    color: pink;
+    font-size: 90px;
+    text-shadow: 4px 4px 4px rgb(223, 56, 173);
+  
+  }
+  
+  #vs {
+  
+    font-family: 'Libre Baskerville', serif;
+    font-size: 80px;
+    text-shadow: 4px 4px 4px rgb(110, 110, 110);
+  
+  }
+  
+  #marvel {
+  
+    font-family: 'Noto Sans KR', sans-serif;
+    color: red;
+    font-size: 80px;
+    text-shadow: 4px 4px 4px rgb(109, 7, 7);
+  
+  }
+  /* end title */
+
+  .main-container{
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      clear: both;
+  }
+  
+  .header{
+      max-width: 800px;
+      height: 150px;
+      margin: 0 auto;
+      clear: both;
+      text-align: center
+  }
+  
+
+  #rpg {
+      position: absolute;
+      vertical-align: top;
+      color: white;
+      font-size: 30px;
+      display: inline;
+      line-height: 165px;
+      font-family: 'Trade Winds', cursive;
+      text-shadow: 4px 4px 7px rgba(237, 7, 7, 0.6);
+          left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%) 
+  
+  }
+  
+  .character-selection-section{
+      max-width: 930px;
+      border-bottom: solid black 5px;
+  	display: inline;  
+  }
+  
+  .character {   
+      margin-top: 90px;
+      width: 150px;
+      height: 150px;
+  }
+  
+  .arena{
+      clear: both;
+      position: relative;
+      width: 830px;
+      max-width: 8300px;
+      height: 200px;
+      padding-bottom: 50px;
+  }
+  
+  #throne-room{
+      position: absolute;
+      width: 830px;
+      height: auto;
+      border: solid black 5px;
+  }
+  
+  #player-fight-area{
+      position: absolute;
+      left:250px;
+      top: 180px;
+      width: 150px;
+      height: 150px;
+      margin: 0px;
+  }
+  
+  #opponent-fight-area{
+      position: absolute; 
+      right: 250px;
+      top: 180px;
+      width: 150px;
+      height: 150px;
+      margin: 0px;
+  }
+  
+  .flipped {
+      -moz-transform: scaleX(-1);
+      -o-transform: scaleX(-1);
+      -webkit-transform: scaleX(-1);
+      transform: scaleX(-1);
+      filter: FlipH;
+      -ms-filter: "FlipH";
+  }
+  
+  #player-name{
+      color: white;
+      font-family: 'Trade Winds', cursive;
+      position: absolute;
+      left: 100px;
+      top: 10px;
+  }
+  
+  #opponent-name{
+      color: white;
+      font-family: 'Trade Winds', cursive;
+      position: absolute;
+      right: 100px;
+      top: 10px;
+  }
+  
+  #player-hp {
+      font-family: 'Trade Winds', cursive;
+      position: absolute;
+      left: 100px;
+      top: 40px;
+  }
+
+  #opponent-hp {
+      font-family: 'Trade Winds', cursive;
+      position: absolute;
+      right: 100px;
+      top: 40px;
+  }
+  
+  #player-total-hp {
+      color: green;
+      font-family: 'Trade Winds', cursive;
+      position: absolute;
+      left: 100px;
+      top: 70px;
+  
+  }
+  
+  #opponent-total-hp {
+      color: green;
+      font-family: 'Trade Winds', cursive;
+      position: absolute;
+      right: 100px;
+      top: 70px;
+  }
+  
+  #select-text {
+      width: 830px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      font-family: 'Trade Winds', cursive;
+      font-size: 20px;
+      text-shadow: 2px 2px 2px red;
+      color: black;
+  }
+  #attack-button{
+      position: absolute;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%); 
+  }
+  
+  #game-over{
+      position: absolute;
+      text-align: center;
+      font-family: 'Trade Winds', cursive;
+      font-size: 70px;
+      text-shadow: 2px 2px 2px rgba(255, 255, 255, .6);
+      color: rgba(237, 7, 7, 1);
+      z-index: -100;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%); 
+      top: 500px;
+  }
+  #game-win{
+      position: absolute;
+      text-align: center;
+      font-family: 'Trade Winds', cursive;
+      font-size: 70px;
+      text-shadow: 2px 2px 2px rgba(255, 255, 255, .6);
+      color: rgba(237, 7, 7, 1);
+      z-index: -100;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%); 
+      top: 500px;
+  }
+  
+  #attack-button{
+      color: red;
+      background-color: black;
+      font-family: 'Trade Winds', cursive;
+  
+  }
+  #pinkie, #rainbow, #midnight, #wolverine, #juggernaut, #venom {
+      position: relative;
+      width: 150px;
+      height: 150px;
+  }

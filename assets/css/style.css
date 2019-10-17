@@ -213,3 +213,7 @@ h1.game_head{
 .inline_bold{
 	font-weight: bold;
 }
+
+.row {
+  margin-right: 0px;
+}
